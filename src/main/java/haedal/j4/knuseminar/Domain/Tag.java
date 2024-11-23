@@ -12,9 +12,13 @@ import lombok.NoArgsConstructor;
 public class Tag {
 
     @Id
-    @Column(name="postID", nullable=false)
-    private Integer postID;  // 포스트 ID
+    @Column(name="tagID", nullable=false)
+    private Integer tagID;  // 포스트 ID
 
     @Column(name = "tagText", length = 20, nullable = false)
     private String tagText;  // 태그 내용
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "postID")  // Post의 외래 키
+    private Post post;  // 여러 태그가 하나의 게시글에 속함
 }

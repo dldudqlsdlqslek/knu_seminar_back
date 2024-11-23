@@ -41,25 +41,15 @@ public class Post {
     @Column(name = "place", nullable = false)
     private String place;
 
-    @ManyToMany
-    @JoinTable(
-            name = "category",  // 중간 테이블 이름
-            joinColumns = @JoinColumn(name = "postID"),  // Post의 외래 키
-            inverseJoinColumns = @JoinColumn(name = "categoryText")  // Category의 외래 키
-    )
-    private List<Category> categories;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Category> categories;  // 하나의 게시글에 여러 카테고리
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Tag> tags;  // 하나의 게시글에 여러 태그
 
     public List<Category> getCategories() {
         return categories;
     }
-
-    @ManyToMany
-    @JoinTable(
-            name = "tag",  // 중간 테이블 이름
-            joinColumns = @JoinColumn(name = "postID"),  // Post의 외래 키
-            inverseJoinColumns = @JoinColumn(name = "tagText")  // Tag의 외래 키
-    )
-    private List<Tag> tags;
 
     public List<Tag> getTags() {
         return tags;

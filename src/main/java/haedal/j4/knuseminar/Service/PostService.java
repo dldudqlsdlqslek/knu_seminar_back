@@ -3,6 +3,7 @@ package haedal.j4.knuseminar.Service;
 
 import haedal.j4.knuseminar.Domain.Category;
 import haedal.j4.knuseminar.Domain.Post;
+import haedal.j4.knuseminar.Domain.Tag;
 import haedal.j4.knuseminar.Repository.PostRepository;
 import haedal.j4.knuseminar.ResponseDTO.PostDetailResponseDTO;
 import haedal.j4.knuseminar.ResponseDTO.PostSimpleResponseDTO;
@@ -47,10 +48,10 @@ public class PostService {
                 post.getPlace(),
                 post.getUrl(),
                 post.getTags().stream()
-                        .map(tag -> tag.getTagText())
+                        .map(Tag::getTagText)
                         .collect(Collectors.toList()),
                 post.getCategories().stream()
-                        .map(category -> category.getCategoryText())
+                        .map(Category::getCategoryText)
                         .collect(Collectors.toList())
 
         );
@@ -79,7 +80,7 @@ public class PostService {
                         post.getTitle(),
                         post.getUrl(),
                         post.getCategories().stream()
-                                .map(c -> c.getCategoryText())
+                                .map(Category::getCategoryText)
                                 .collect(Collectors.toList()),
                         post.getPostDate()
                 ))
