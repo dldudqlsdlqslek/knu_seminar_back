@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tagID;  // 태그 ID
+    @Column(name="postID", nullable=false)
+    private Integer postID;  // 포스트 ID
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "tagText", length = 20, nullable = false)
     private String tagText;  // 태그 내용
 }

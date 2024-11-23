@@ -27,15 +27,12 @@ public class Post {
     private String url;  // 원본 게시글 링크
 
     @Column(name = "postDate", nullable = false)
-    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate postDate;  // 게시글 작성일
 
     @Column(name = "startTime", nullable = false)
-    @Convert(converter = Jsr310JpaConverters.LocalTimeConverter.class)
     private LocalTime startTime;
 
     @Column(name = "endTime", nullable = false)
-    @Convert(converter = Jsr310JpaConverters.LocalTimeConverter.class)
     private LocalTime endTime;
 
     @Column(name = "day", nullable = false)

@@ -12,9 +12,10 @@ import lombok.NoArgsConstructor;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categoryID;  // 카테고리 ID
+    @Column(name = "postID", nullable = false)
+    private Integer postID;  // 포스트 ID
 
-    @Column(length = 20, nullable = false)
+
+    @Column(name = "categoryText", length = 20, nullable = false)
     private String categoryText;  // 카테고리 내용
 }

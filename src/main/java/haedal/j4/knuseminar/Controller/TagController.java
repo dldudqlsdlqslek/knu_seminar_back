@@ -7,7 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,6 +29,9 @@ public class TagController {
                 .map(tag -> tag.getTagText())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(tags);
+        Set<String> set = new HashSet<>(tags);
+
+        List<String> resultTags = new ArrayList<>(set);
+        return ResponseEntity.ok(resultTags);
     }
 }
