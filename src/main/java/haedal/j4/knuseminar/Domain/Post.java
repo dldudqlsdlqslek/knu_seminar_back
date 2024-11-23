@@ -3,13 +3,16 @@ package haedal.j4.knuseminar.Domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Post {
 
@@ -17,39 +20,52 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer postID;  // 게시글 ID
 
-    @OneToOne
-    @JoinColumn(name = "seminar_id", nullable = false)
-    private Seminar seminar;  // 세미나와 1:1 관계 (세미나 ID)
-
-    @Column(length = 50, nullable = false)
+    @Column(name = "title", length = 100, nullable = false)
     private String title;  // 게시글 제목
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "url", length = 100, nullable = false)
     private String url;  // 원본 게시글 링크
 
     @Column(name = "postDate", nullable = false)
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate postDate;  // 게시글 작성일
 
-    @ManyToMany
-    @JoinTable(
-            name = "Post_Tag",  // 중간 테이블 이름
-            joinColumns = @JoinColumn(name = "postID"),  // Post의 외래 키
-            inverseJoinColumns = @JoinColumn(name = "tagID")  // Tag의 외래 키
-    )
-    private Set<Tag> tags = new HashSet<>();  // 태그와 다대다 관계
+    @Column(name = "startTime", nullable = false)
+    @Convert(converter = Jsr310JpaConverters.LocalTimeConverter.class)
+    private LocalTime startTime;
+
+    @Column(name = "endTime", nullable = false)
+    @Convert(converter = Jsr310JpaConverters.LocalTimeConverter.class)
+    private LocalTime endTime;
+
+    @Column(name = "day", nullable = false)
+    private String day;
+
+    @Column(name = "place", nullable = false)
+    private String place;
 
     @ManyToMany
     @JoinTable(
-            name = "Post_Category",  // 중간 테이블 이름
+            name = "category",  // 중간 테이블 이름
             joinColumns = @JoinColumn(name = "postID"),  // Post의 외래 키
-            inverseJoinColumns = @JoinColumn(name = "categoryID")  // Category의 외래 키
+            inverseJoinColumns = @JoinColumn(name = "categoryText")  // Category의 외래 키
     )
-    private Set<Category> categories = new HashSet<>();  // 카테고리와 다대다 관계
+    private List<Category> categories;
 
-    public Post(Seminar seminar, String title, String url, LocalDate postDate) {
-        this.seminar = seminar;
-        this.title = title;
-        this.url = url;
-        this.postDate = postDate;
+    public List<Category> getCategories() {
+        return categories;
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "tag",  // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "postID"),  // Post의 외래 키
+            inverseJoinColumns = @JoinColumn(name = "tagText")  // Tag의 외래 키
+    )
+    private List<Tag> tags;
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
 }

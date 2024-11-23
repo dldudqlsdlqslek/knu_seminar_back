@@ -13,7 +13,7 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tagID;  // 태그 ID
+    private Integer tagID;  // 태그 ID
 
     @Column(length = 20, nullable = false)
     private String tagText;  // 태그 내용
