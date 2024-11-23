@@ -16,4 +16,12 @@ public class PostSimpleResponseDTO {
     private String url;
     private List<String> category;
     private LocalDate postDate;
+
+    public PostSimpleResponseDTO(Integer postID, String title, String url, List<String> category, LocalDate postDate) {
+        this.postID = postID;
+        this.title = title;
+        this.url = url;
+        this.category = category;
+        this.postDate = postDate;
+    }
 }

@@ -2,8 +2,6 @@ package haedal.j4.knuseminar.Controller;
 
 
 import haedal.j4.knuseminar.Repository.TagRepository;
-import haedal.j4.knuseminar.Service.FilterService;
-import haedal.j4.knuseminar.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

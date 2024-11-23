@@ -17,7 +17,22 @@ public class PostDetailResponseDTO {
     private String day;
     private String place;
     private String url;
-    private List<Tag> tags;
-    private List<Category> categories;
+    private List<String> tags;
+    private List<String> categories;
 
+
+    public PostDetailResponseDTO(Integer postID, String title, LocalTime startTime, LocalTime endTime,
+                                 String day, String place, String url,
+                                 List<String> tags, List<String> categories)
+    {
+        this.postID = postID;
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.day = day;
+        this.place = place;
+        this.url = url;
+        this.tags = tags;
+        this.categories = categories;
+    }
 }
