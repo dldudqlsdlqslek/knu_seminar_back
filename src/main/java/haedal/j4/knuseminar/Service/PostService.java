@@ -67,9 +67,11 @@ public class PostService {
                 .filter(post -> category == null || post.getCategories().stream()
                         .anyMatch(c -> c.getCategoryText().equals(category))) // 카테고리 필터
                 .filter(post -> timeRanges == null || timeRanges.stream().anyMatch(timeRange -> {
-                    String[] times = timeRange.split("-");
-                    LocalTime start = LocalTime.parse(times[0]);
-                    LocalTime end = LocalTime.parse(times[1]);
+                    String[] ranges = timeRange.split(",");
+                    String startTimeString = ranges[0].split("-")[0];
+                    String endTimeString = ranges[ranges.length-1].split("-")[1];
+                    LocalTime start = LocalTime.parse(String.format("%02d:00:00", Integer.parseInt(startTimeString)));
+                    LocalTime end = LocalTime.parse(String.format("%02d:00:00", Integer.parseInt(endTimeString)));
                     return !post.getStartTime().isAfter(end) && !post.getEndTime().isBefore(start);
                 })) // 시간 필터
                 .map(post -> new PostSimpleResponseDTO(
