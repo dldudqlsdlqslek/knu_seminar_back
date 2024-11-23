@@ -13,6 +13,7 @@ import java.util.List;
 public class PostSimpleResponseDTO {
     private Integer postID;
     private String title;
+    private String url;
     private List<String> category;
     private LocalDate postDate;
 }
