@@ -7,6 +7,8 @@ plugins {
 group = 'haedal.j4'
 version = '0.0.1-SNAPSHOT'
 
+
+//자바 버전 21 사용
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PostSimpleResponseDTO {
+public class PostSimpleResponseDTO {    //Post 간단 정보 DTO
     private Integer postID;
     private String title;
     private String url;

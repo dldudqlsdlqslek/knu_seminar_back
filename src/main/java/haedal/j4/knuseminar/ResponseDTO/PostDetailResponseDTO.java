@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Getter
-public class PostDetailResponseDTO {
+public class PostDetailResponseDTO {    //Post 세부 정보 DTO
     private Integer postID;
     private String title;
     private LocalTime startTime;

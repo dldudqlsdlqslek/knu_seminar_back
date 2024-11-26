@@ -21,7 +21,7 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public List<PostSimpleResponseDTO> getAllPosts() {
+    public List<PostSimpleResponseDTO> getAllPosts() {     //모든 게시글 간단 정보 리스트 반환 함수
         List<Post> posts = postRepository.findAll();
         return posts.stream()
                 .map(post -> new PostSimpleResponseDTO(
@@ -29,13 +29,13 @@ public class PostService {
                         post.getTitle(),
                         post.getUrl(),
                         post.getCategories().stream()
-                                .map(Category::getCategoryText)  // Category의 이름을 리스트로 변환
+                                .map(Category::getCategoryText)
                                 .collect(Collectors.toList()),
                         post.getPostDate()))
                 .collect(Collectors.toList());
     }
 
-    public PostDetailResponseDTO getPostsDetails(Integer postID) {
+    public PostDetailResponseDTO getPostsDetails(Integer postID) {     //특정 게시글 세부 정보 반환 함수
         Post post = postRepository.findById(postID)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found with ID: " + postID));
 
@@ -57,6 +57,9 @@ public class PostService {
         );
     }
 
+
+
+    //제목, 장소, 태그, 카테고리, 시간 검색 및 필터링한 게시글 간단 정보 리스트 반환 함수
     public List<PostSimpleResponseDTO> postSearch(String query, List<String> timeRanges,
                                                    String place, String tag, String category) {
         List<Post> posts = postRepository.findAll();

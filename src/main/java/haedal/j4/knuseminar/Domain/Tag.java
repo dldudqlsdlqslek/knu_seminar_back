@@ -9,16 +9,18 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tag {
+public class Tag {   //Tag 테이블을 받아올 Tag 엔티티
+
+
 
     @Id
     @Column(name="tagID", nullable=false)
-    private Integer tagID;  // 포스트 ID
+    private Integer tagID;
 
     @Column(name = "tagText", length = 20, nullable = false)
-    private String tagText;  // 태그 내용
+    private String tagText;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "postID")  // Post의 외래 키
-    private Post post;  // 여러 태그가 하나의 게시글에 속함
+    @JoinColumn(name = "postID")
+    private Post post;
 }

@@ -14,20 +14,20 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Post {
+public class Post {  //Post 테이블을 받아올 Post 엔티티
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer postID;  // 게시글 ID
+    private Integer postID;
 
     @Column(name = "title", length = 100, nullable = false)
-    private String title;  // 게시글 제목
+    private String title;
 
     @Column(name = "url", length = 100, nullable = false)
-    private String url;  // 원본 게시글 링크
+    private String url;
 
     @Column(name = "postDate", nullable = false)
-    private LocalDate postDate;  // 게시글 작성일
+    private LocalDate postDate;
 
     @Column(name = "startTime", nullable = false)
     private LocalTime startTime;
@@ -42,10 +42,10 @@ public class Post {
     private String place;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Category> categories;  // 하나의 게시글에 여러 카테고리
+    private List<Category> categories;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tag> tags;  // 하나의 게시글에 여러 태그
+    private List<Tag> tags;
 
     public List<Category> getCategories() {
         return categories;

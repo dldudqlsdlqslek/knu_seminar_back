@@ -23,6 +23,8 @@ public class TagController {
         this.tagRepository = tagRepository;
     }
 
+
+    //전체 태그 목록 문자열 리스트로 받아오는 GET Method API
     @GetMapping("/tags")
     public ResponseEntity<List<String>> getTags() {
         List<String> tags = tagRepository.findAll().stream()
